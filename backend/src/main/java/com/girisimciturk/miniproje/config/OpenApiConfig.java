@@ -20,8 +20,17 @@ public class OpenApiConfig {
     @Value("${app.frontend.url:http://localhost:8081}")
     private String frontendUrl;
 
+    @Value("${server.port:8080}")
+    private String serverPort;
+
     @Bean
     public OpenAPI customOpenAPI() {
+        // Production server (Railway)
+        Server productionServer = new Server();
+        productionServer.setUrl("https://girisimciturk-mini-proje-production.up.railway.app");
+        productionServer.setDescription("Production Server (Railway)");
+
+        // Local development server
         Server localServer = new Server();
         localServer.setUrl("http://localhost:8080");
         localServer.setDescription("Development Server");
@@ -54,6 +63,6 @@ public class OpenApiConfig {
 
         return new OpenAPI()
             .info(info)
-            .servers(List.of(localServer));
+            .servers(List.of(productionServer, localServer));
     }
 }
