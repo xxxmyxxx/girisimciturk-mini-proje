@@ -1,0 +1,9 @@
+# Local Development Configuration
+# Bu dosyayi kopyalayip application-local.properties olarak kaydedin
+# application-local.properties dosyasi .gitignore'da oldugu icin GitHub'a yuklenmeyecektir
+
+# Stripe Configuration (Test Mode)
+# BURAYA KENDI STRIPE ANAHTARLARINIZI YAPIŞTIRIN
+stripe.api.secret-key=your_stripe_secret_key_here
+stripe.api.publishable-key=your_stripe_publishable_key_here
+stripe.webhook.secret=your_stripe_webhook_secret_here

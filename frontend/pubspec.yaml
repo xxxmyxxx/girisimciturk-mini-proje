@@ -1,0 +1,44 @@
+name: frontend
+description: "GirisimciTurk Mini Proje - Udemy/Uber Demo"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  
+  # HTTP istekleri için
+  http: ^1.1.0
+  
+  # State management için
+  provider: ^6.1.1
+  
+  # Animasyonlar için
+  animations: ^2.0.11
+  
+  # Smooth page indicator
+  smooth_page_indicator: ^1.1.0
+  
+  # URL launcher (Stripe checkout için)
+  url_launcher: ^6.3.1
+  
+  # WebView (alternatif ödeme yöntemi)
+  webview_flutter: ^4.10.0
+  
+  # Session persistence için
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
