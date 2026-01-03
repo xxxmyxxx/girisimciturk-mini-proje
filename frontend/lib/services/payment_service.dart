@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'api_service.dart';
+import '../config/app_config.dart';
 
 /// Gelişmiş Ödeme Servisi (Stripe Entegrasyonlu)
 class PaymentService {
+  static String get baseUrl => AppConfig.fullApiUrl;
   /// Yeni sipariş oluştur ve Stripe Checkout URL al
   Future<Map<String, dynamic>> createOrder({
     required int userId,
@@ -15,15 +16,15 @@ class PaymentService {
   }) async {
     try {
       final response = await http.post(
-        Uri.parse('${ApiService.baseUrl}/payment/create-order'),
+        Uri.parse('$baseUrl/payment/create-order'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'userId': userId,
           'courseId': courseId,
           'customerEmail': customerEmail,
           'customerName': customerName,
-          'successUrl': successUrl ?? '${ApiService.baseUrl}/payment/success',
-          'cancelUrl': cancelUrl ?? '${ApiService.baseUrl}/payment/cancel',
+          'successUrl': successUrl ?? '$baseUrl/payment/success',
+          'cancelUrl': cancelUrl ?? '$baseUrl/payment/cancel',
         }),
       );
 
@@ -60,7 +61,7 @@ class PaymentService {
   Future<Map<String, dynamic>> getOrderStatus(int orderId) async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiService.baseUrl}/payment/order/$orderId'),
+        Uri.parse('$baseUrl/payment/order/$orderId'),
         headers: {'Content-Type': 'application/json'},
       );
 
@@ -96,7 +97,7 @@ class PaymentService {
   }) async {
     try {
       final response = await http.post(
-        Uri.parse('${ApiService.baseUrl}/courses/assign'),
+        Uri.parse('$baseUrl/courses/assign'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'userId': userId,

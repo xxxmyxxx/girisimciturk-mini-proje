@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/course.dart';
-import 'api_service.dart';
+import '../config/app_config.dart';
 
 /// Kurs işlemleri servisi
 class CourseService {
+  static String get baseUrl => AppConfig.fullApiUrl;
   /// Tüm kursları getir
   Future<List<Course>> getAllCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiService.baseUrl}/courses'),
+        Uri.parse('$baseUrl/courses'),
       );
 
       if (response.statusCode == 200) {
@@ -31,7 +32,7 @@ class CourseService {
   /// Kullanıcının satın aldığı kursları getir
   Future<List<Course>> getMyCourses(int userId) async {
     try {
-      final url = '${ApiService.baseUrl}/courses/my-courses/$userId';
+      final url = '$baseUrl/courses/my-courses/$userId';
       
       final response = await http.get(
         Uri.parse(url),

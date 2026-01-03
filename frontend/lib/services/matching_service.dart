@@ -1,15 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'api_service.dart';
+import '../config/app_config.dart';
 import '../models/live_lesson_request.dart';
 
 /// Canlı ders eşleştirme servisi (Uber mantığı)
 class MatchingService {
+  static String get baseUrl => AppConfig.fullApiUrl;
+
   /// Canlı ders talebi oluştur
   Future<Map<String, dynamic>> requestLiveLesson(int userId, int courseId) async {
     try {
       final response = await http.post(
-        Uri.parse('${ApiService.baseUrl}/matching/request-lesson'),
+        Uri.parse('$baseUrl/matching/request-lesson'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'userId': userId,
@@ -44,7 +46,7 @@ class MatchingService {
   Future<List<LiveLessonRequest>> getUserRequests(int userId) async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiService.baseUrl}/matching/my-requests/$userId'),
+        Uri.parse('$baseUrl/matching/my-requests/$userId'),
         headers: {'Content-Type': 'application/json'},
       );
 
@@ -64,7 +66,7 @@ class MatchingService {
   Future<List<LiveLessonRequest>> getInstructorRequests(int instructorId) async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiService.baseUrl}/matching/instructor-requests/$instructorId'),
+        Uri.parse('$baseUrl/matching/instructor-requests/$instructorId'),
         headers: {'Content-Type': 'application/json'},
       );
 
@@ -84,7 +86,7 @@ class MatchingService {
   Future<Map<String, dynamic>> getInstructorDashboard(int instructorId) async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiService.baseUrl}/matching/instructor-dashboard/$instructorId'),
+        Uri.parse('$baseUrl/matching/instructor-dashboard/$instructorId'),
         headers: {'Content-Type': 'application/json'},
       );
 

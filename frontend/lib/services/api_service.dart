@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/user.dart';
+import '../config/app_config.dart';
 
 /// API servisi - Backend ile iletişim
 class ApiService {
-  static const String baseUrl = 'http://localhost:8080/api/v1';
+  static String get baseUrl => AppConfig.fullApiUrl;
   
   /// Login işlemi
   static Future<User?> login(String username, String password) async {
